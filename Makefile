@@ -25,7 +25,7 @@ TAG_VERSION ?= 1.0.0
 
 ##### Public rules #####
 
-all: ubuntu20.04 centos7
+all: vgpu
 
 push:
 	$(DOCKER) push "$(REGISTRY)/volcano-device-plugin:$(VERSION)-ubuntu20.04"
@@ -53,8 +53,8 @@ ubuntu20.04:
 		--file docker/amd64/Dockerfile.ubuntu20.04 .
 
 vgpu:
-	$(DOCKER) build --pull \
-		--tag $(REGISTRY)/volcano-vgpu-device-plugin:$(VERSION)-ubuntu20.04 \
+	$(DOCKER) build --pull --push \
+		--tag $(REGISTRY)/volcano-vgpu-device-plugin:$(VERSION) \
 		--file docker/amd64/Dockerfile.vgpu-ubuntu20.04 .
 
 centos7:
